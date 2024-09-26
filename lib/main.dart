@@ -1,3 +1,4 @@
+import 'dart:math'; // Import to generate random numbers
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,13 +13,12 @@ class WeatherInfoApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: WeatherHomePage(), // Make sure this matches the class name below
+      home: WeatherHomePage(),
     );
   }
 }
 
 class WeatherHomePage extends StatefulWidget {
-  // This is the class being referenced
   @override
   _WeatherHomePageState createState() => _WeatherHomePageState();
 }
@@ -29,12 +29,32 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
   String _temperature = "Temperature";
   String _weatherCondition = "Weather Condition";
 
-  // Method to simulate fetching weather data
+  // Function to simulate fetching weather data
   void _fetchWeatherData() {
+    String enteredCity = _cityController.text;
+    if (enteredCity.isEmpty) {
+      // If no city is entered, show a warning
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Please enter a city name!'),
+        ),
+      );
+      return;
+    }
+
+    // Generate random temperature between 15°C and 30°C
+    int randomTemperature = 15 + Random().nextInt(16); // 15 to 30
+
+    // Randomly select a weather condition
+    List<String> weatherConditions = ['Sunny', 'Cloudy', 'Rainy'];
+    String randomCondition =
+        weatherConditions[Random().nextInt(weatherConditions.length)];
+
+    // Update the state with the new weather data
     setState(() {
-      _cityName = _cityController.text;
-      _temperature = "25°C"; // Simulated temperature
-      _weatherCondition = "Sunny"; // Simulated weather condition
+      _cityName = enteredCity;
+      _temperature = "$randomTemperature°C";
+      _weatherCondition = randomCondition;
     });
   }
 
