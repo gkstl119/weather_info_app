@@ -88,17 +88,17 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
 
             // Display Weather Information
             Text(
-              _cityName,
+              _cityName, // Display the entered city name
               style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
             Text(
-              _temperature,
+              _temperature, // Display the generated temperature
               style: TextStyle(fontSize: 48),
             ),
             SizedBox(height: 10),
             Text(
-              _weatherCondition,
+              _weatherCondition, // Display the generated weather condition
               style: TextStyle(fontSize: 24),
             ),
           ],
